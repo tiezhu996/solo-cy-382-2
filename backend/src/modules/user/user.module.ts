@@ -5,5 +5,12 @@ import { UserController } from './user.controller';
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 
-@Module({ imports: [TypeOrmModule.forFeature([UserEntity]), JwtModule.register({ secret: process.env.JWT_SECRET ?? 'dev_secret' })], providers: [UserService], controllers: [UserController] })
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([UserEntity]),
+    JwtModule.register({ global: true, secret: process.env.JWT_SECRET ?? 'dev_secret' })
+  ],
+  providers: [UserService],
+  controllers: [UserController]
+})
 export class UserModule {}

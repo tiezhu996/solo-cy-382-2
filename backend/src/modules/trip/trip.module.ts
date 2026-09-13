@@ -3,6 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TripController } from './trip.controller';
 import { TripEntity } from './trip.entity';
 import { TripService } from './trip.service';
+import { TripMemberEntity } from '../companion/trip-member.entity';
 
-@Module({ imports: [TypeOrmModule.forFeature([TripEntity])], controllers: [TripController], providers: [TripService] })
+@Module({
+  imports: [TypeOrmModule.forFeature([TripEntity, TripMemberEntity])],
+  controllers: [TripController],
+  providers: [TripService]
+})
 export class TripModule {}
